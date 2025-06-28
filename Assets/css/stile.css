@@ -6,12 +6,11 @@ body {
   margin: 0;
   padding: 0;
   background: #f0f4f8;
-  
-  /* Asegúrate de dejar espacio para header + controls */
 }
 
 /* Header fijo */
 header {
+  position: sticky;
   top: 0;
   z-index: 1000;
   background: #007bff;
@@ -24,8 +23,8 @@ header {
 /* Barra de controles fija justo debajo del header */
 .controls {
   position: sticky;
-  top: 0;            /* se pega al tope de la ventana */
-  z-index: 1000;     /* encima del resto */
+  top: 60px; /* deja espacio para el header */
+  z-index: 1000;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -60,45 +59,81 @@ header {
 /* Contenedor de cartones */
 #cardsContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 16px;
   padding: 16px;
-  margin-bottom: 60px;
+  margin-bottom: 80px; /* espacio para footer */
 }
 
-/* Cartón individual */
+/* Cartón individual (tabla + botón) */
 .card {
   background: white;
+  border: 1px solid #ccc;   /* borde general gris */
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
 }
+
+/* Tabla interna del cartón */
 .card table {
-  width: 100%;
   border-collapse: collapse;
+  width: 100%;
 }
+
+/* Celdas del header y del cuerpo */
+.card th,
+.card td {
+  width: 48px;
+  height: 40px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 1rem;
+  border: 1px solid #ccc;    /* borde gris claro */
+  box-sizing: border-box;
+  padding: 0;
+  background: white;
+}
+
+/* Header */
 .card th {
   background: #007bff;
   color: white;
-  padding: 8px 0;
+  font-weight: bold;
 }
-.card td {
+
+/* Input dentro de la celda */
+.card td input {
+  width: 100%;
+  height: 100%;
+  border: none;          /* sin borde propio */
+  padding: 0;
+  margin: 0;
   text-align: center;
-  padding: 6px 0;
-  border: 1px solid #e1e5ea;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  background: transparent;
+  outline: none;
+  box-sizing: border-box;
+  caret-color: #007bff;
 }
+
+/* Casillas marcadas */
 .card td.marked {
   background: #ffc107;
 }
+
+/* Botón eliminar integrado */
 .remove-btn {
-  width: 100%;
-  padding: 8px;
   background: #dc3545;
   color: white;
   border: none;
   border-top: 1px solid #c82333;
   font-size: 0.9rem;
+  padding: 8px 0;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
 }
 
 /* Modales */
@@ -127,7 +162,7 @@ header {
   font-size: 0.9rem;
 }
 .modal-confirm { background: #28a745; color: white; }
-.modal-cancel { background: #6c757d; color: white; }
+.modal-cancel  { background: #6c757d; color: white; }
 
 /* Patrón de victoria */
 .pattern-container {
@@ -146,7 +181,8 @@ header {
   margin: 8px 0;
 }
 .pattern-cell {
-  width: 40px; height: 40px;
+  width: 40px;
+  height: 40px;
   border: 1px solid #ccc;
   background: #fafafa;
   cursor: pointer;
@@ -154,7 +190,6 @@ header {
 .pattern-cell.selected {
   background: #28a745;
 }
-.clearPatternBtn,
 #clearPatternBtn {
   background: #dc3545;
   color: white;
@@ -178,4 +213,30 @@ header {
 }
 .footer-banner p {
   margin: 0;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Modales: usar fadeIn/fadeOut */
+.modal-backdrop.show {
+  display: flex;             /* fuerza el flex */
+  animation: fadeIn 0.3s ease-out forwards;
+}
+.modal-backdrop.hide {
+  animation: fadeOut 0.2s ease-in forwards;
+}
+
+/* Bingo cards: animación al aparecer */
+.card.pop-in {
+  animation: popIn 0.4s ease-out forwards;
 }

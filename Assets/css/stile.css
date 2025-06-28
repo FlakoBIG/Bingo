@@ -1,0 +1,181 @@
+/* Archivo: Assets/css/stile.css */
+
+/* Reset básico y fuente */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f0f4f8;
+  
+  /* Asegúrate de dejar espacio para header + controls */
+}
+
+/* Header fijo */
+header {
+  top: 0;
+  z-index: 1000;
+  background: #007bff;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+/* Barra de controles fija justo debajo del header */
+.controls {
+  position: sticky;
+  top: 0;            /* se pega al tope de la ventana */
+  z-index: 1000;     /* encima del resto */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  padding: 10px;
+  background: white;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+/* Estilos de botones e inputs en controles */
+.controls button,
+.controls input {
+  flex: 1 1 auto;
+  min-width: 60px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+.controls button {
+  background: #007bff;
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.controls button:disabled {
+  background: #ccc;
+}
+
+/* Contenedor de cartones */
+#cardsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+  padding: 16px;
+  margin-bottom: 60px;
+}
+
+/* Cartón individual */
+.card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.card table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.card th {
+  background: #007bff;
+  color: white;
+  padding: 8px 0;
+}
+.card td {
+  text-align: center;
+  padding: 6px 0;
+  border: 1px solid #e1e5ea;
+  font-size: 0.9rem;
+}
+.card td.marked {
+  background: #ffc107;
+}
+.remove-btn {
+  width: 100%;
+  padding: 8px;
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-top: 1px solid #c82333;
+  font-size: 0.9rem;
+}
+
+/* Modales */
+.modal-backdrop {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 280px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.modal button {
+  margin: 5px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+.modal-confirm { background: #28a745; color: white; }
+.modal-cancel { background: #6c757d; color: white; }
+
+/* Patrón de victoria */
+.pattern-container {
+  background: white;
+  margin: 16px;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  text-align: center;
+}
+.pattern-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 40px);
+  grid-gap: 4px;
+  justify-content: center;
+  margin: 8px 0;
+}
+.pattern-cell {
+  width: 40px; height: 40px;
+  border: 1px solid #ccc;
+  background: #fafafa;
+  cursor: pointer;
+}
+.pattern-cell.selected {
+  background: #28a745;
+}
+.clearPatternBtn,
+#clearPatternBtn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Banner de footer fijo */
+.footer-banner {
+  background: #007bff;
+  color: #fff;
+  text-align: center;
+  padding: 12px;
+  font-size: 0.9rem;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+}
+.footer-banner p {
+  margin: 0;
+}
